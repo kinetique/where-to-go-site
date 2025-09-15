@@ -1,0 +1,17 @@
+{% extends 'places/base.html' %}
+{% block title %}Головна{% endblock %}
+{% block content %}
+    <h1>Обери місце куди ти підеш сьогодні!</h1>
+
+    <form>
+        {% csrf_token %}
+        <button type="submit" name="chose_place">Куди піти?</button>
+    </form>
+
+    {% if selected_place %}
+        <h3>Сьогодні тобі випало це місце:</h3>
+        <div>
+            <h5></h5>
+        </div>
+    {% endif %}
+{% endblock %}
