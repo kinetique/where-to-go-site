@@ -4,18 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Favorite places{% endblock %}</title>
-    {% load static %}
-    <link >
+    <link rel="stylesheet" href="{% static 'places/css/styles.css' %}">
 </head>
 <body>
     <header>
-        <h1>Places where to go</h1>
+        <h1>places where to go</h1>
         <nav>
             <a href="{% url 'index' %}">Home</a> |
-            <a href="{% url 'places_list' %}">Places list</a>
+            <a href="{% url 'places_list' %}">Places list</a> |
             <a href="{% url 'add_place' %}">Add place</a>
         </nav>
-    </header>>
+    </header>
 
     <main>
         {% block content %}{% endblock %}

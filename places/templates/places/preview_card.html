@@ -1,0 +1,16 @@
+{% load static %}
+
+<div class="place-card">
+    <img src="{% static 'places/img/photoweb.jpeg' %}" alt="photo">
+    <h2><a href="{% url 'place_detail' place.id %}">{{ place.name }}</a></h2>
+    <p>{{ place.description|truncatewords:10 }}</p>
+    <p>Type:{{ place.place_type }}</p>
+    <p>Location:{{ place.location|default:"Secret place👀" }}</p>
+    <p>
+        Rating:
+        {% for i in "12345" %}
+            {% if forloop.counter <= place.rating %}★{% else %}☆{% endif %}
+        {% endfor %}
+    </p>
+    <p>Date: {{ place.created_at }}</p>
+</div>

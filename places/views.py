@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, redirect
-
 from places.forms import PlaceForm
 from places.models import Place
 import random
@@ -9,8 +8,9 @@ def index(request):
     place_ids = request.session.get('place_ids', [])
     places = Place.objects.filter(id__in=place_ids)
     selected_place = None
-    if places.exists():
-        selected_place = get_place(places)
+    if request.method == "POST" and "chose_place" in request.POST:
+        if places.exists():
+            selected_place = get_place(places)
 
     return render(request, 'places/index.html', {'selected_place': selected_place})
 

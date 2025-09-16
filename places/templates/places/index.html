@@ -1,24 +1,18 @@
 {% extends 'places/base.html' %}
+{% load static %}
 {% block title %}Home{% endblock %}
 {% block content %}
-    <h1>Chose where you will go today!</h1>
+    <div class="content">
+    <h1>here you can choose where you will go today!</h1>
 
     <form method="post">
         {% csrf_token %}
-        <button type="submit" name="chose_place">Where to go?</button>
+        <button type="submit" name="chose_place">where to go?</button>
     </form>
 
     {% if selected_place %}
-        <h3>Today you got this place:</h3>
-        <div>
-            <h4><a href="{% url 'place_detail' selected_place.id %}">{{ selected_place.name }}</a></h4>
-            <p>{{ selected_place.description|truncatewords:10 }}</p>
-            <p>Rating:
-                {% for i in "12345" %}
-                    {% if forloop.counter <= selected_place.rating %}★{% else %}☆{% endif %}
-                {% endfor %}
-            </p>
-            <p>Location: {{ selected_place.location|default:"Secret place👀" }}</p>
+        <h3>today you got this place:</h3>
+        {% include 'places/preview_card.html' with place=selected_place %}
         </div>
     {% endif %}
 {% endblock %}
