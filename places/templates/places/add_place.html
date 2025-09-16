@@ -1,2 +1,34 @@
 {% extends 'places/base.html' %}
-{% block title %}Додати місце{% endblock %}
+{% block title %}Add place{% endblock %}
+
+{% block content %}
+    <form method="post">
+    {% csrf_token %}
+    <p>
+        <label>Name:
+        <input type="text" name="name">
+        </label>
+    </p>
+    <p>
+        <label>Description:
+        <textarea name="description"></textarea>
+        </label>
+    </p>
+    <p>
+        <label>Place type:
+        <input type="text" name="place_type">
+        </label>
+    </p>
+    <p>
+        <label>Location:
+        <input type="text" name="location">
+        </label>
+    </p>
+    <p>
+        <label>Rating:
+        <input type="number" name="rating" min="1" max="5">
+        </label>
+    </p>
+    <button type="submit">Submit</button>
+    </form>
+{% endblock %}

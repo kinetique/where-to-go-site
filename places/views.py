@@ -21,9 +21,9 @@ def places_list(request):
     return render(request, 'places/places_list.html', {'places': places})
 
 
-def places_details(request):
+def place_detail(request, pk):
     place_ids = request.session.get('place_ids', [])
-    place = get_object_or_404(Place, id__in=place_ids)
+    place = get_object_or_404(Place, pk=pk, id__in=place_ids)
     return render(request, 'places/place_detail.html', {'place': place})
 
 
@@ -65,4 +65,4 @@ def get_place(places):
             weighted_list.append(3)
         else:
             weighted_list.append(1)
-    return random.choices(places, weights=weighted_list, k=1)
+    return random.choices(places, weights=weighted_list, k=1)[0]

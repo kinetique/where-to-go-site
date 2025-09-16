@@ -1,17 +1,24 @@
 {% extends 'places/base.html' %}
-{% block title %}Головна{% endblock %}
+{% block title %}Home{% endblock %}
 {% block content %}
-    <h1>Обери місце куди ти підеш сьогодні!</h1>
+    <h1>Chose where you will go today!</h1>
 
-    <form>
+    <form method="post">
         {% csrf_token %}
-        <button type="submit" name="chose_place">Куди піти?</button>
+        <button type="submit" name="chose_place">Where to go?</button>
     </form>
 
     {% if selected_place %}
-        <h3>Сьогодні тобі випало це місце:</h3>
+        <h3>Today you got this place:</h3>
         <div>
-            <h5></h5>
+            <h4><a href="{% url 'place_detail' selected_place.id %}">{{ selected_place.name }}</a></h4>
+            <p>{{ selected_place.description|truncatewords:10 }}</p>
+            <p>Rating:
+                {% for i in "12345" %}
+                    {% if forloop.counter <= selected_place.rating %}★{% else %}☆{% endif %}
+                {% endfor %}
+            </p>
+            <p>Location: {{ selected_place.location|default:"Secret place👀" }}</p>
         </div>
     {% endif %}
 {% endblock %}

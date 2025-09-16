@@ -1,18 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Улюблені місця{% endblock %}</title>
+    <title>{% block title %}Favorite places{% endblock %}</title>
     {% load static %}
     <link >
 </head>
 <body>
     <header>
-        <h1>Улюблені місця</h1>
+        <h1>Places where to go</h1>
         <nav>
-            <a href="{% url 'index' %}">Головна</a> |
-            <a href="{% url 'places_list' %}">Список місць</a>
-            <a href="{% url 'add_place' %}">Додати місце</a>
+            <a href="{% url 'index' %}">Home</a> |
+            <a href="{% url 'places_list' %}">Places list</a>
+            <a href="{% url 'add_place' %}">Add place</a>
         </nav>
     </header>>
 
@@ -21,7 +22,7 @@
     </main>
 
     <footer>
-        <p>Створено Софією Чернухою. 2025</p>
+        <p>Created by Sophia Chernukha. 2025</p>
     </footer>
 </body>
 </html>
