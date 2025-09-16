@@ -1,0 +1,21 @@
+{% extends 'places/base.html' %}
+{% load static %}
+{% block title %}{{ place.name }}{% endblock %}
+
+<!-- I didn't include a preview_card template here, because detailed description of the location is required. -->
+{% block content %}
+    <div class="detail-card">
+        <h2>{{ place.name }}</h2>
+        <p>{{ place.description }}</p>
+        <p>Type:{{ place.place_type }}</p>
+        <p>Location:{{ place.location|default:"Secret place👀" }}</p>
+        <p>
+            Rating:
+            {% for i in "12345" %}
+                {% if forloop.counter <= place.rating %}★{% else %}☆{% endif %}
+            {% endfor %}
+        </p>
+        <p>Date: {{ place.created_at }}</p>
+        <img src="{% static 'places/img/photoweb.jpeg' %}" alt="photo">
+    </div>
+{% endblock %}
